@@ -1,0 +1,30 @@
+def calculate_income_tax(salary):
+    # Standard deductions
+    standard_deduction = 75000  # 75K
+    hra_deduction = 0  # Assuming HRA deduction is not applicable
+    nps_deduction = 100000  # 1 Lakh
+    medical_deduction = 30000  # 30K
+    
+    # Calculate taxable income
+    taxable_income = salary - standard_deduction - hra_deduction - nps_deduction - medical_deduction
+    
+    # Apply tax slabs
+    if taxable_income <= 300000:
+        tax = 0
+    elif taxable_income <= 700000:
+        tax = (taxable_income - 300000) * 0.05
+    elif taxable_income <= 1000000:
+        tax = 20000 + (taxable_income - 700000) * 0.1
+    elif taxable_income <= 1200000:
+        tax = 50000 + (taxable_income - 1000000) * 0.15
+    elif taxable_income <= 1500000:
+        tax = 125000 + (taxable_income - 1200000) * 0.2
+    else:
+        tax = 225000 + (taxable_income - 1500000) * 0.3
+    
+    return tax
+
+# Example usage:
+salary = float(input("Enter the salary: "))  # Input the salary
+income_tax = calculate_income_tax(salary)
+print(f"Income tax payable: Rs. {income_tax:.2f}")
